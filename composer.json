@@ -1,9 +1,9 @@
 {
-  "name": "jacerider/neo_font",
+  "name": "jacerider/neo_form",
   "description": "Provide functionality for controlling forms.",
   "type": "drupal-module",
   "license": "proprietary",
-  "homepage": "https://github.com/jacerider/neo_font",
+  "homepage": "https://github.com/jacerider/neo_form",
   "authors": [
     {
       "name": "Cyle Carlson (JaceRider)",
@@ -12,8 +12,8 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/jacerider/neo_font/issues",
-    "source": "https://github.com/jacerider/neo_font"
+    "issues": "https://github.com/jacerider/neo_form/issues",
+    "source": "https://github.com/jacerider/neo_form"
   },
   "minimum-stability": "dev",
   "require": {
