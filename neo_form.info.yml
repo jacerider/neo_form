@@ -1,0 +1,9 @@
+name: 'Neo | Form'
+type: module
+neo: true
+description: 'Provide functionality for controlling forms.'
+package: Neo
+version: 0.0.0
+core_version_requirement: ^10 || ^11
+dependencies:
+  - neo_color:neo_color

@@ -1,0 +1,48 @@
+themes:
+  status: {}
+  front:
+    item:
+      primary_color: primary-500
+      base_color: base-0
+      base_50_color: base-50
+      base_100_color: base-100
+      base_200_color: base-200
+      accent_color: base-500
+      content_color: base-900
+      label_color: base-600
+      description_color: base-400
+      placeholder_color: base-700
+      ring_color: primary-600
+      border_color: base-300
+      border_hover_color: base-400
+      border_focus_color: base-400
+      border_width: 2px
+      border_radius: 0.25rem
+    btn:
+      color: base-500
+      hover_color: base-700
+      content_color: base-0
+      content_hover_color: base-0
+      border_color: ''
+      border_hover_color: ''
+    btn_primary:
+      color: primary-500
+      hover_color: primary-700
+      content_color: primary-0
+      content_hover_color: primary-0
+      border_color: ''
+      border_hover_color: ''
+    btn_secondary:
+      color: secondary-500
+      hover_color: secondary-700
+      content_color: secondary-0
+      content_hover_color: secondary-0
+      border_color: ''
+      border_hover_color: ''
+    btn_accent:
+      color: accent-500
+      hover_color: accent-700
+      content_color: accent-0
+      content_hover_color: accent-0
+      border_color: ''
+      border_hover_color: ''

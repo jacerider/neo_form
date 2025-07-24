@@ -1,0 +1,103 @@
+neo_form.settings:
+  type: config_object
+  mapping:
+    status:
+      type: sequence
+      label: Theme status
+      sequence:
+        type: boolean
+    themes:
+      type: sequence
+      label: Theme settings
+      sequence:
+        type: mapping
+        mapping:
+          item:
+            type: neo_form.settings.item
+            label: Form Item
+          btn:
+            type: neo_form.settings.button
+            label: Button
+          btn_primary:
+            type: neo_form.settings.button
+            label: Button Primary
+          btn_secondary:
+            type: neo_form.settings.button
+            label: Button Secondary
+          btn_accent:
+            type: neo_form.settings.button
+            label: Button Accent
+
+neo_form.settings.item:
+  type: mapping
+  mapping:
+    primary_color:
+      type: string
+      label: Primary color
+    base_color:
+      type: string
+      label: Base color
+    base_50_color:
+      type: string
+      label: Base 50 color
+    base_100_color:
+      type: string
+      label: Base 100 color
+    base_200_color:
+      type: string
+      label: Base 200 color
+    accent_color:
+      type: string
+      label: Accent color
+    content_color:
+      type: string
+      label: Content/input color
+    label_color:
+      type: string
+      label: Label color
+    description_color:
+      type: string
+      label: Description color
+    placeholder_color:
+      type: string
+      label: Placeholder color
+    ring_color:
+      type: string
+      label: Ring color
+    border_color:
+      type: string
+      label: Border color
+    border_hover_color:
+      type: string
+      label: Border hover color
+    border_focus_color:
+      type: string
+      label: Border focus color
+    border_width:
+      type: string
+      label: Border width
+    border_radius:
+      type: string
+      label: Border radius
+
+neo_form.settings.button:
+  type: mapping
+  mapping:
+    color:
+      type: string
+      label: Button color
+    hover_color:
+      type: string
+      label: Button hover color
+    content_color:
+      type: string
+      label: Button content color
+    content_hover_color:
+      type: string
+      label: Button content hover color
+    border_color:
+      type: string
+      label: Button border color
+    border_hover_color:
+      type: string
+      label: Button border hover color

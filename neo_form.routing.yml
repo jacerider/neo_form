@@ -1,0 +1,19 @@
+neo_form.front.preview:
+  path: '/admin/config/neo/form/front'
+  defaults:
+    _title: 'Preview'
+    _form: 'Drupal\neo_form\Form\PreviewForm'
+  options:
+    _admin_route: FALSE
+  requirements:
+    _permission: 'administer neo_form'
+
+neo_form.back.preview:
+  path: '/admin/config/neo/form/back'
+  defaults:
+    _title: 'Preview'
+    _form: 'Drupal\neo_form\Form\PreviewForm'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _permission: 'administer neo_form'

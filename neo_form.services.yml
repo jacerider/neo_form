@@ -1,0 +1,16 @@
+services:
+  neo_form.settings:
+    parent: neo_settings.repository
+    arguments: ['neo_form']
+
+  neo_form.neo_build_event_subscriber:
+    class: '\Drupal\neo_form\EventSubscriber\NeoBuildEventSubscriber'
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: 'event_subscriber' }
+
+  neo_form.neo_build_inline_event_subscriber:
+    class: '\Drupal\neo_form\EventSubscriber\NeoBuildInlineEventSubscriber'
+    arguments: ['@neo_form.settings']
+    tags:
+      - { name: 'event_subscriber' }

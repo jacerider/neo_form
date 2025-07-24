@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Neo | form module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_page_attachments().
+ */
+function neo_form_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['#neo_form']) && $form['#neo_form'] === FALSE) {
+    return;
+  }
+  $form['#attributes']['class'][] = 'neo-form';
+}
