@@ -69,6 +69,19 @@ class FormSettings extends SettingsBase {
       }
       $subform = [];
 
+      $subform['form'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Form'),
+        '#open' => FALSE,
+      ];
+
+      $subform['form']['spacing'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('Spacing'),
+        '#description' => $this->t('The spacing inside a form in px or rem. Example: 1.5rem'),
+        '#default_value' => $this->getValue(['themes', $themeId, 'form', 'spacing']),
+      ];
+
       $subform['item'] = [
         '#type' => 'details',
         '#title' => $this->t('Form Item'),
@@ -76,6 +89,7 @@ class FormSettings extends SettingsBase {
       ];
       foreach ([
         'primary_color' => $this->t('Primary Color'),
+        'primary_active_color' => $this->t('Primary Active Color'),
         'base_color' => $this->t('Base Color'),
         'base_50_color' => $this->t('Base 50 Color'),
         'base_100_color' => $this->t('Base 100 Color'),
@@ -113,6 +127,13 @@ class FormSettings extends SettingsBase {
         '#default_value' => $this->getValue(['themes', $themeId, 'item', 'border_radius']),
         '#min' => 0,
         '#step' => 1,
+      ];
+
+      $subform['item']['spacing'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('Spacing'),
+        '#description' => $this->t('The spacing between form elements in px or rem. Example: 1.5rem'),
+        '#default_value' => $this->getValue(['themes', $themeId, 'item', 'spacing']),
       ];
 
       foreach ([

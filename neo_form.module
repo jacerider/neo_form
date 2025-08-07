@@ -8,11 +8,29 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements hook_page_attachments().
+ * Implements hook_preprocess_HOOK() for form elements.
  */
-function neo_form_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
-  if (isset($form['#neo_form']) && $form['#neo_form'] === FALSE) {
-    return;
+function neo_form_preprocess_form(&$variables) {
+  if (empty($variables['element']['#parents']) && empty($variables['element']['#array_parents'])) {
+    if (isset($variables['element']['#neo_form']) && $variables['element']['#neo_form'] === FALSE) {
+      return;
+    }
+    // This is a form element that is not part of a form.
+    // Add a class to the attributes to style it as a form element.
+    $variables['attributes']['class'][] = 'form--neo';
   }
-  $form['#attributes']['class'][] = 'neo-form';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for form elements.
+ */
+function neo_form_preprocess_form_element(&$variables) {
+  if (empty($variables['element']['#parents']) && empty($variables['element']['#array_parents'])) {
+    if (isset($variables['element']['#neo_form']) && $variables['element']['#neo_form'] === FALSE) {
+      return;
+    }
+    // This is a form element that is not part of a form.
+    // Add a class to the attributes to style it as a form element.
+    $variables['attributes']['class'][] = 'form--neo';
+  }
 }

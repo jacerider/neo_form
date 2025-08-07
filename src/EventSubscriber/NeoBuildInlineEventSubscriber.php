@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\neo_form\EventSubscriber;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Theme\ThemeManagerInterface;
 use Drupal\neo_build\Event\NeoBuildInlineEvent;
-use Drupal\neo_color\PalletInterface;
 use Drupal\neo_settings\SettingsRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -51,17 +48,19 @@ class NeoBuildInlineEventSubscriber implements EventSubscriberInterface {
         foreach ($value as $subkey => $subValue) {
           $cssVar = '--form-' . str_replace('_', '-', $key) . '-' . str_replace('_', '-', $subkey);
           if (substr($cssVar, -6) === '-color') {
+            $cssVar = str_replace('-color', '', $cssVar);
             $subValue = 'rgb(var(--color-' . $subValue . '))';
           }
-          $event->addCssValue($cssVar, $subValue, '.neo-form');
+          $event->addCssValue($cssVar, $subValue, '.form--neo');
         }
       }
       else {
         $cssVar = '--form-' . str_replace('_', '-', $key);
         if (substr($cssVar, -6) === '-color') {
+          $cssVar = str_replace('-color', '', $cssVar);
           $value = 'rgb(var(--color-' . $value . '))';
         }
-        $event->addCssValue($cssVar, $value, '.neo-form');
+        $event->addCssValue($cssVar, $value, '.form--neo');
       }
     }
   }

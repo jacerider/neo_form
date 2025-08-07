@@ -3,8 +3,15 @@ neo_form.front.preview:
   base_route: neo.settings.plugin.neo_form.config
   title: 'Front Preview'
   weight: 5
+
 neo_form.back.preview:
   route_name: neo_form.back.preview
   base_route: neo.settings.plugin.neo_form.config
   title: 'Back Preview'
   weight: 10
+
+neo_form.formless.preview:
+  route_name: neo_form.formless.preview
+  base_route: neo.settings.plugin.neo_form.config
+  title: 'Formless Preview'
+  weight: 15

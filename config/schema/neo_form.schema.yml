@@ -12,6 +12,9 @@ neo_form.settings:
       sequence:
         type: mapping
         mapping:
+          form:
+            type: neo_form.settings.form
+            label: Form
           item:
             type: neo_form.settings.item
             label: Form Item
@@ -28,12 +31,22 @@ neo_form.settings:
             type: neo_form.settings.button
             label: Button Accent
 
+neo_form.settings.form:
+  type: mapping
+  mapping:
+    spacing:
+      type: string
+      label: Spacing
+
 neo_form.settings.item:
   type: mapping
   mapping:
     primary_color:
       type: string
       label: Primary color
+    primary_active_color:
+      type: string
+      label: Primary active color
     base_color:
       type: string
       label: Base color
@@ -79,6 +92,9 @@ neo_form.settings.item:
     border_radius:
       type: string
       label: Border radius
+    spacing:
+      type: string
+      label: Spacing
 
 neo_form.settings.button:
   type: mapping

@@ -1,13 +1,16 @@
 themes:
   status: {}
   front:
+    form:
+      spacing: 0px
     item:
       primary_color: primary-500
+      primary_active_color: primary-600
       base_color: base-0
       base_50_color: base-50
       base_100_color: base-100
       base_200_color: base-200
-      accent_color: base-500
+      accent_color: base-400
       content_color: base-900
       label_color: base-600
       description_color: base-400
@@ -18,6 +21,7 @@ themes:
       border_focus_color: base-400
       border_width: 2px
       border_radius: 0.25rem
+      spacing: 1rem
     btn:
       color: base-500
       hover_color: base-700

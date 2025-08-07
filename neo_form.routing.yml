@@ -17,3 +17,13 @@ neo_form.back.preview:
     _admin_route: TRUE
   requirements:
     _permission: 'administer neo_form'
+
+neo_form.formless.preview:
+  path: '/admin/config/neo/form/formless'
+  defaults:
+    _title: 'Preview'
+    _controller: '\Drupal\neo_form\Controller\PreviewController'
+  options:
+    _admin_route: FALSE
+  requirements:
+    _permission: 'administer neo_form'
