@@ -150,8 +150,6 @@ class FormSettings extends SettingsBase {
         foreach ([
           'color' => $this->t('Color'),
           'hover_color' => $this->t('Hover Color'),
-          'content_color' => $this->t('Content Color'),
-          'content_hover_color' => $this->t('Content Hover Color'),
           'border_color' => $this->t('Border Color'),
           'border_hover_color' => $this->t('Border Hover Color'),
         ] as $key => $label) {

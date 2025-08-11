@@ -105,12 +105,6 @@ neo_form.settings.button:
     hover_color:
       type: string
       label: Button hover color
-    content_color:
-      type: string
-      label: Button content color
-    content_hover_color:
-      type: string
-      label: Button content hover color
     border_color:
       type: string
       label: Button border color

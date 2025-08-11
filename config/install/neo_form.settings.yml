@@ -25,28 +25,20 @@ themes:
     btn:
       color: base-500
       hover_color: base-700
-      content_color: base-0
-      content_hover_color: base-0
       border_color: ''
       border_hover_color: ''
     btn_primary:
       color: primary-500
       hover_color: primary-700
-      content_color: primary-0
-      content_hover_color: primary-0
       border_color: ''
       border_hover_color: ''
     btn_secondary:
       color: secondary-500
       hover_color: secondary-700
-      content_color: secondary-0
-      content_hover_color: secondary-0
       border_color: ''
       border_hover_color: ''
     btn_accent:
       color: accent-500
       hover_color: accent-700
-      content_color: accent-0
-      content_hover_color: accent-0
       border_color: ''
       border_hover_color: ''
