@@ -331,49 +331,6 @@ final class PreviewBuild {
       ],
     ];
 
-    // We utilize 'demo' as a replacement for 'btn' so that tailwind compile all
-    // of this.
-    foreach ([
-      'demo',
-      'demo-outline',
-      'demo-reset',
-      'demo-primary',
-      'demo-secondary',
-      'demo-accent',
-      'demo-success',
-      'demo-warning',
-      'demo-alert',
-      'demo-primary-outline',
-      'demo-secondary-outline',
-      'demo-accent-outline',
-      'demo-success-outline',
-      'demo-warning-outline',
-      'demo-alert-outline',
-      'demo-text',
-      'demo-text-primary',
-      'demo-text-secondary',
-      'demo-text-accent',
-      'demo-text-success',
-      'demo-text-warning',
-      'demo-text-alert',
-    ] as $button_class) {
-      $button_class = str_replace('demo', 'btn', $button_class);
-      foreach ($sizes as $size => $label) {
-        $build['buttons']['actions'][$button_class][$size] = [
-          '#type' => 'submit',
-          '#value' => t('@size: @button_class', [
-            '@size' => $label,
-            '@button_class' => '.' . $button_class . '.btn-' . $size,
-          ]),
-          '#neo_size' => $size,
-          '#neo_style' => str_replace('btn-', '', $button_class),
-          '#attributes' => [
-            'class' => ['btn'],
-          ],
-        ];
-      }
-    }
-
     foreach ([
       'btn',
       'btn-outline',
