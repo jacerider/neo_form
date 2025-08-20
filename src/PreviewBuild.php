@@ -32,8 +32,6 @@ final class PreviewBuild {
   public static function build($isForm = TRUE): array {
     $build = [];
 
-    $build['poop']['#markup'] = '<div class="poops">Poop</div>';
-
     $options = [
       'option1' => t('Option 1'),
       'option2' => t('Option 2'),
@@ -333,48 +331,48 @@ final class PreviewBuild {
       ],
     ];
 
-    // We utilize 'BTN' as a replacement for 'btn' so that tailwind compile all
+    // We utilize 'demo' as a replacement for 'btn' so that tailwind compile all
     // of this.
-    // foreach ([
-    //   'BTN',
-    //   'BTN-outline',
-    //   'BTN-reset',
-    //   'BTN-primary',
-    //   'BTN-secondary',
-    //   'BTN-accent',
-    //   'BTN-success',
-    //   'BTN-warning',
-    //   'BTN-alert',
-    //   'BTN-primary-outline',
-    //   'BTN-secondary-outline',
-    //   'BTN-accent-outline',
-    //   'BTN-success-outline',
-    //   'BTN-warning-outline',
-    //   'BTN-alert-outline',
-    //   'BTN-text',
-    //   'BTN-text-primary',
-    //   'BTN-text-secondary',
-    //   'BTN-text-accent',
-    //   'BTN-text-success',
-    //   'BTN-text-warning',
-    //   'BTN-text-alert',
-    // ] as $button_class) {
-    //   $button_class = str_replace('BTN', 'btn', $button_class);
-    //   foreach ($sizes as $size => $label) {
-    //     $build['buttons']['actions'][$button_class][$size] = [
-    //       '#type' => 'submit',
-    //       '#value' => t('@size: @button_class', [
-    //         '@size' => $label,
-    //         '@button_class' => '.' . $button_class . '.btn-' . $size,
-    //       ]),
-    //       '#neo_size' => $size,
-    //       '#neo_style' => str_replace('btn-', '', $button_class),
-    //       '#attributes' => [
-    //         'class' => ['btn'],
-    //       ],
-    //     ];
-    //   }
-    // }
+    foreach ([
+      'demo',
+      'demo-outline',
+      'demo-reset',
+      'demo-primary',
+      'demo-secondary',
+      'demo-accent',
+      'demo-success',
+      'demo-warning',
+      'demo-alert',
+      'demo-primary-outline',
+      'demo-secondary-outline',
+      'demo-accent-outline',
+      'demo-success-outline',
+      'demo-warning-outline',
+      'demo-alert-outline',
+      'demo-text',
+      'demo-text-primary',
+      'demo-text-secondary',
+      'demo-text-accent',
+      'demo-text-success',
+      'demo-text-warning',
+      'demo-text-alert',
+    ] as $button_class) {
+      $button_class = str_replace('demo', 'btn', $button_class);
+      foreach ($sizes as $size => $label) {
+        $build['buttons']['actions'][$button_class][$size] = [
+          '#type' => 'submit',
+          '#value' => t('@size: @button_class', [
+            '@size' => $label,
+            '@button_class' => '.' . $button_class . '.btn-' . $size,
+          ]),
+          '#neo_size' => $size,
+          '#neo_style' => str_replace('btn-', '', $button_class),
+          '#attributes' => [
+            'class' => ['btn'],
+          ],
+        ];
+      }
+    }
 
     foreach ([
       'btn',
@@ -407,7 +405,7 @@ final class PreviewBuild {
         'btn-lg' => 'LG',
         'btn-xl' => 'XL',
       ] as $size => $label) {
-        $build['buttons']['actions'][$button_class][$size] = [
+        $build['buttons']['actions']['full_' . $button_class][$size] = [
           '#type' => 'submit',
           '#value' => t('@size: @button_class', [
             '@size' => $label,

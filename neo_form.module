@@ -17,7 +17,7 @@ function neo_form_preprocess_form(&$variables) {
     }
     // This is a form element that is not part of a form.
     // Add a class to the attributes to style it as a form element.
-    // $variables['attributes']['class'][] = 'form--neo';
+    $variables['attributes']['class'][] = 'form--neo';
   }
 }
 
@@ -31,6 +31,6 @@ function neo_form_preprocess_form_element(&$variables) {
     }
     // This is a form element that is not part of a form.
     // Add a class to the attributes to style it as a form element.
-    // $variables['attributes']['class'][] = 'form--neo';
+    $variables['attributes']['class'][] = 'form--neo';
   }
 }

@@ -88,12 +88,12 @@ class FormSettings extends SettingsBase {
         '#open' => FALSE,
       ];
       foreach ([
-        'primary_color' => $this->t('Primary Color'),
-        'primary_active_color' => $this->t('Primary Active Color'),
         'base_color' => $this->t('Base Color'),
         'base_50_color' => $this->t('Base 50 Color'),
         'base_100_color' => $this->t('Base 100 Color'),
         'base_200_color' => $this->t('Base 200 Color'),
+        'primary_color' => $this->t('Primary Color'),
+        'primary_active_color' => $this->t('Primary Active Color'),
         'accent_color' => $this->t('Accent Color'),
         'content_color' => $this->t('Content/Input Color'),
         'label_color' => $this->t('Label Color'),
@@ -101,8 +101,8 @@ class FormSettings extends SettingsBase {
         'placeholder_color' => $this->t('Placeholder Color'),
         'ring_color' => $this->t('Ring Color'),
         'border_color' => $this->t('Border Color'),
-        'border_hover_color' => $this->t('Border Hover Color'),
-        'border_focus_color' => $this->t('Border Focus Color'),
+        'border_color_hover' => $this->t('Border Hover Color'),
+        'border_color_focus' => $this->t('Border Focus Color'),
       ] as $key => $label) {
         $defaultValue = $this->getValue(['themes', $themeId, 'item', $key]);
         $subform['item'][$key] = [
@@ -148,10 +148,10 @@ class FormSettings extends SettingsBase {
           '#open' => FALSE,
         ];
         foreach ([
-          'color' => $this->t('Color'),
-          'hover_color' => $this->t('Hover Color'),
+          'bg_color' => $this->t('Color'),
+          'bg_color_hover' => $this->t('Hover Color'),
           'border_color' => $this->t('Border Color'),
-          'border_hover_color' => $this->t('Border Hover Color'),
+          'border_color_hover' => $this->t('Border Hover Color'),
         ] as $key => $label) {
           $subform[$btnKey][$key] = [
             '#type' => 'neo_color',
@@ -187,9 +187,11 @@ class FormSettings extends SettingsBase {
     $settings = $form_state->getValue('themes', []);
     $settings = array_intersect_key($settings, $enabled);
     foreach ($settings as $themeId => $themeSettings) {
-      foreach ($themeSettings as $key => $value) {
-        if (empty($value) &&substr($key, -6) === '_color') {
-          $settings[$themeId][$key] = 'transparent';
+      foreach ($themeSettings as $groupKey => $group) {
+        foreach ($group as $key => $value) {
+          if (empty($value) && str_contains($key, 'color')) {
+            $settings[$themeId][$groupKey][$key] = 'transparent';
+          }
         }
       }
     }

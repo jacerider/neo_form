@@ -17,28 +17,28 @@ themes:
       placeholder_color: base-700
       ring_color: primary-600
       border_color: base-300
-      border_hover_color: base-400
-      border_focus_color: base-400
+      border_color_hover: base-400
+      border_color_focus: base-400
       border_width: 2px
       border_radius: 0.25rem
       spacing: 1rem
     btn:
-      color: base-500
-      hover_color: base-700
+      bg_color: base-500
+      bg_color_hover: base-700
       border_color: ''
-      border_hover_color: ''
+      border_color_hover: ''
     btn_primary:
-      color: primary-500
-      hover_color: primary-700
+      bg_color: primary-500
+      bg_color_hover: primary-700
       border_color: ''
-      border_hover_color: ''
+      border_color_hover: ''
     btn_secondary:
-      color: secondary-500
-      hover_color: secondary-700
+      bg_color: secondary-500
+      bg_color_hover: secondary-700
       border_color: ''
-      border_hover_color: ''
+      border_color_hover: ''
     btn_accent:
-      color: accent-500
-      hover_color: accent-700
+      bg_color: accent-500
+      bg_color_hover: accent-700
       border_color: ''
-      border_hover_color: ''
+      border_color_hover: ''

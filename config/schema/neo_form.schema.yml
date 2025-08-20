@@ -80,10 +80,10 @@ neo_form.settings.item:
     border_color:
       type: string
       label: Border color
-    border_hover_color:
+    border_color_hover:
       type: string
       label: Border hover color
-    border_focus_color:
+    border_color_focus:
       type: string
       label: Border focus color
     border_width:
@@ -99,15 +99,15 @@ neo_form.settings.item:
 neo_form.settings.button:
   type: mapping
   mapping:
-    color:
+    bg_color:
       type: string
       label: Button color
-    hover_color:
+    bg_color_hover:
       type: string
       label: Button hover color
     border_color:
       type: string
       label: Button border color
-    border_hover_color:
+    border_color_hover:
       type: string
       label: Button border hover color

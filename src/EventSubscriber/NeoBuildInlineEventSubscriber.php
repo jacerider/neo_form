@@ -41,18 +41,24 @@ class NeoBuildInlineEventSubscriber implements EventSubscriberInterface {
    *   The neo build dev event.
    */
   public function onInlineBuild(NeoBuildInlineEvent $event) {
-    $themeSettings = $this->settings->getValue(['themes', $event->getThemeName()], []);
     $event->addCacheTags(['config:neo_form.settings']);
+    if (!$this->settings->getValue(['status', $event->getThemeName()])) {
+      return;
+    }
+    $themeSettings = $this->settings->getValue(['themes', $event->getThemeName()], []);
+    if (!$themeSettings) {
+      return;
+    }
     $contentColors = [
       '--form-item-primary' => '--form-item-primary-content',
-      '--btn-color' => '--btn-content-color',
-      '--btn-hover-color' => '--btn-hover-content-color',
-      '--btn-primary-color' => '--btn-primary-content-color',
-      '--btn-primary-hover-color' => '--btn-primary-hover-content-color',
-      '--btn-secondary-color' => '--btn-secondary-content-color',
-      '--btn-secondary-hover-color' => '--btn-secondary-hover-content-color',
-      '--btn-accent-color' => '--btn-accent-content-color',
-      '--btn-accent-hover-color' => '--btn-accent-hover-content-color',
+      '--btn-bg-color' => '--btn-content-color',
+      '--btn-bg-color-hover' => '--btn-content-color-hover',
+      '--btn-primary-bg-color' => '--btn-primary-content-color',
+      '--btn-primary-bg-color-hover' => '--btn-primary-content-color-hover',
+      '--btn-secondary-bg-color' => '--btn-secondary-content-color',
+      '--btn-secondary-bg-color-hover' => '--btn-secondary-content-color-hover',
+      '--btn-accent-bg-color' => '--btn-accent-content-color',
+      '--btn-accent-bg-color-hover' => '--btn-accent-content-color-hover',
     ];
     foreach ($themeSettings as $key => $value) {
       $isBtn = substr($key, 0, 3) === 'btn';
@@ -62,13 +68,13 @@ class NeoBuildInlineEventSubscriber implements EventSubscriberInterface {
           $originalValue = $cssValue;
           $cssKey = $key . '_' . $subkey;
           $cssVar = '--' . $prefix . str_replace('_', '-', $cssKey);
-          $isColor = substr($cssVar, -5) === 'color';
+          $isColor = str_contains($cssVar, 'color');
           if ($isColor) {
             // Buttons use the -color in their CSS var. Other settings do not.
             if (!$isBtn) {
               $cssVar = str_replace('-color', '', $cssVar);
             }
-            $cssValue = 'rgb(var(--color-' . $originalValue . '))';
+            $cssValue = $originalValue === 'transparent' ? 'transparent' : 'rgb(var(--color-' . $originalValue . '))';
           }
           $event->addCssValue($cssVar, $cssValue, '.form--neo');
           if ($isColor && isset($contentColors[$cssVar])) {
@@ -79,7 +85,7 @@ class NeoBuildInlineEventSubscriber implements EventSubscriberInterface {
       }
       else {
         $cssVar = '--' . $prefix . str_replace('_', '-', $key);
-        if (substr($cssVar, -5) === 'color') {
+        if (str_contains($cssVar, 'color')) {
           $cssVar = str_replace('-color', '', $cssVar);
           $value = 'rgb(var(--color-' . $value . '))';
         }
