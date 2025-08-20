@@ -3,7 +3,7 @@ type: module
 neo: true
 description: 'Provide functionality for controlling forms.'
 package: Neo
-version: 0.0.0
+version: 1.0.2
 core_version_requirement: ^10 || ^11
 dependencies:
   - neo_color:neo_color
