@@ -32,6 +32,8 @@ final class PreviewBuild {
   public static function build($isForm = TRUE): array {
     $build = [];
 
+    $build['poop']['#markup'] = '<div class="poops">Poop</div>';
+
     $options = [
       'option1' => t('Option 1'),
       'option2' => t('Option 2'),
@@ -46,9 +48,9 @@ final class PreviewBuild {
     ];
 
     $sizes = [
+      'md' => t('Medium'),
       'xs' => t('Extra Small'),
       'sm' => t('Small'),
-      'md' => t('Medium'),
       'lg' => t('Large'),
       'xl' => t('Extra Large'),
     ];
@@ -187,6 +189,32 @@ final class PreviewBuild {
       ];
     }
 
+    $build['autocomplete'] = [
+      '#type' => 'details',
+      '#title' => t('Autocomplete'),
+      '#tree' => TRUE,
+      '#group' => 'tabs',
+    ];
+    foreach ($sizes as $size => $label) {
+      $build['autocomplete']['single_' . $size] = [
+        '#title' => t('Single Autocomplete (@size)', ['@size' => $label]),
+        '#type' => 'entity_autocomplete',
+        '#target_type' => 'node',
+        '#selection_handler' => 'default',
+        '#neo_size' => $size,
+      ];
+    }
+    foreach ($sizes as $size => $label) {
+      $build['autocomplete']['multiple_' . $size] = [
+        '#title' => t('Multiple Autocomplete (@size)', ['@size' => $label]),
+        '#type' => 'entity_autocomplete',
+        '#target_type' => 'node',
+        '#selection_handler' => 'default',
+        '#tags' => TRUE,
+        '#neo_size' => $size,
+      ];
+    }
+
     $build['containers'] = [
       '#type' => 'details',
       '#title' => t('Containers'),
@@ -275,6 +303,29 @@ final class PreviewBuild {
       '#group' => 'tabs',
     ];
 
+    $build['buttons']['group'] = [
+      '#type' => 'actions',
+      '#title' => t('Button Group'),
+      '#attributes' => [
+        'class' => ['btn-group'],
+      ],
+    ];
+
+    $build['buttons']['group']['one'] = [
+      '#type' => 'submit',
+      '#value' => t('One'),
+    ];
+
+    $build['buttons']['group']['two'] = [
+      '#type' => 'submit',
+      '#value' => t('Two'),
+    ];
+
+    $build['buttons']['group']['three'] = [
+      '#type' => 'submit',
+      '#value' => t('Three'),
+    ];
+
     $build['buttons']['actions'] = [
       '#type' => 'actions',
       '#attributes' => [
@@ -284,42 +335,88 @@ final class PreviewBuild {
 
     // We utilize 'BTN' as a replacement for 'btn' so that tailwind compile all
     // of this.
+    // foreach ([
+    //   'BTN',
+    //   'BTN-outline',
+    //   'BTN-reset',
+    //   'BTN-primary',
+    //   'BTN-secondary',
+    //   'BTN-accent',
+    //   'BTN-success',
+    //   'BTN-warning',
+    //   'BTN-alert',
+    //   'BTN-primary-outline',
+    //   'BTN-secondary-outline',
+    //   'BTN-accent-outline',
+    //   'BTN-success-outline',
+    //   'BTN-warning-outline',
+    //   'BTN-alert-outline',
+    //   'BTN-text',
+    //   'BTN-text-primary',
+    //   'BTN-text-secondary',
+    //   'BTN-text-accent',
+    //   'BTN-text-success',
+    //   'BTN-text-warning',
+    //   'BTN-text-alert',
+    // ] as $button_class) {
+    //   $button_class = str_replace('BTN', 'btn', $button_class);
+    //   foreach ($sizes as $size => $label) {
+    //     $build['buttons']['actions'][$button_class][$size] = [
+    //       '#type' => 'submit',
+    //       '#value' => t('@size: @button_class', [
+    //         '@size' => $label,
+    //         '@button_class' => '.' . $button_class . '.btn-' . $size,
+    //       ]),
+    //       '#neo_size' => $size,
+    //       '#neo_style' => str_replace('btn-', '', $button_class),
+    //       '#attributes' => [
+    //         'class' => ['btn'],
+    //       ],
+    //     ];
+    //   }
+    // }
+
     foreach ([
-      'BTN',
-      'BTN-outline',
-      'BTN-reset',
-      'BTN-primary',
-      'BTN-secondary',
-      'BTN-accent',
-      'BTN-success',
-      'BTN-warning',
-      'BTN-alert',
-      'BTN-primary-outline',
-      'BTN-secondary-outline',
-      'BTN-accent-outline',
-      'BTN-success-outline',
-      'BTN-warning-outline',
-      'BTN-alert-outline',
-      'BTN-text',
-      'BTN-text-primary',
-      'BTN-text-secondary',
-      'BTN-text-accent',
-      'BTN-text-success',
-      'BTN-text-warning',
-      'BTN-text-alert',
+      'btn',
+      'btn-outline',
+      'btn-reset',
+      'btn-primary',
+      'btn-secondary',
+      'btn-accent',
+      'btn-success',
+      'btn-warning',
+      'btn-alert',
+      'btn-outline-primary',
+      'btn-outline-secondary',
+      'btn-outline-accent',
+      'btn-outline-success',
+      'btn-outline-warning',
+      'btn-outline-alert',
+      'btn-text',
+      'btn-text-primary',
+      'btn-text-secondary',
+      'btn-text-accent',
+      'btn-text-success',
+      'btn-text-warning',
+      'btn-text-alert',
     ] as $button_class) {
-      $button_class = str_replace('BTN', 'btn', $button_class);
-      foreach ($sizes as $size => $label) {
+      foreach ([
+        'btn-xs' => 'XS',
+        'btn-sm' => 'SM',
+        'btn-md' => 'MD',
+        'btn-lg' => 'LG',
+        'btn-xl' => 'XL',
+      ] as $size => $label) {
         $build['buttons']['actions'][$button_class][$size] = [
           '#type' => 'submit',
           '#value' => t('@size: @button_class', [
             '@size' => $label,
             '@button_class' => '.' . $button_class . '.btn-' . $size,
           ]),
-          '#neo_size' => $size,
-          '#neo_style' => str_replace('btn-', '', $button_class),
+          // '#neo_size' => $size,
+          // '#neo_style' => str_replace('btn-', '', $button_class),
           '#attributes' => [
-            'class' => ['btn'],
+            'class' => ['btn', $button_class, $size],
           ],
         ];
       }
@@ -365,7 +462,7 @@ final class PreviewBuild {
           $element['#id'] = $element['#id'] ?? 'neo-' . $key;
           $element['#value'] = $element['#value'] ?? NULL;
           $element['#title_display'] = $element['#title_display'] ?? 'before';
-          $element['#description_display'] = $element['#description_display'] ?? 'before';
+          $element['#description_display'] = $element['#description_display'] ?? 'after';
         }
         self::processElements($element);
       }
