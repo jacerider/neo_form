@@ -129,6 +129,7 @@ final class PreviewBuild {
         $build['checkboxes'][$size][$style] = [
           '#type' => 'checkboxes',
           '#title' => t('Style: (@style)', ['@style' => $style_label]),
+          '#description' => t('This is a checkbox.'),
           '#options' => $options,
           '#default_value' => [key($options)],
           '#neo_size' => $size,
@@ -181,6 +182,7 @@ final class PreviewBuild {
       $build['select'][$size] = [
         '#type' => 'select',
         '#title' => t('Select (@size)', ['@size' => $label]),
+        '#description' => t('This is a select element.'),
         '#options' => $options,
         '#empty_option' => t('- Select -'),
         '#neo_size' => $size,
@@ -197,6 +199,7 @@ final class PreviewBuild {
       $build['autocomplete']['single_' . $size] = [
         '#title' => t('Single Autocomplete (@size)', ['@size' => $label]),
         '#type' => 'entity_autocomplete',
+        '#description' => t('Autocomplete element'),
         '#target_type' => 'node',
         '#selection_handler' => 'default',
         '#neo_size' => $size,
@@ -206,6 +209,7 @@ final class PreviewBuild {
       $build['autocomplete']['multiple_' . $size] = [
         '#title' => t('Multiple Autocomplete (@size)', ['@size' => $label]),
         '#type' => 'entity_autocomplete',
+        '#description' => t('Autocomplete element (multiple)'),
         '#target_type' => 'node',
         '#selection_handler' => 'default',
         '#tags' => TRUE,
