@@ -41,6 +41,7 @@ final class PreviewBuild {
     $optionStyles = [
       'inline' => t('Inline'),
       'inline_buttons' => t('Inline Buttons'),
+      'inline_buttons_outline' => t('Inline Buttons Outline'),
       'inline_elements' => t('Inline Elements'),
       'grid_buttons' => t('Grid Buttons'),
     ];
