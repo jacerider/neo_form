@@ -76,7 +76,7 @@ class NeoBuildInlineEventSubscriber implements EventSubscriberInterface {
             }
             $cssValue = $originalValue === 'transparent' ? 'transparent' : 'rgb(var(--color-' . $originalValue . '))';
           }
-          $event->addCssValue($cssVar, $cssValue, '.form--neo');
+          $event->addCssValue($cssVar, (string) $cssValue, '.form--neo');
           if ($isColor && isset($contentColors[$cssVar])) {
             $cssValue = 'rgb(var(--color-' . $originalValue . '-content))';
             $event->addCssValue($contentColors[$cssVar], $cssValue, '.form--neo');
