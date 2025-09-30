@@ -125,8 +125,6 @@ class FormSettings extends SettingsBase {
         '#title' => $this->t('Border Radius'),
         '#description' => $this->t('The radius of the border corners in px or rem. Example: 4px or 0.25rem'),
         '#default_value' => $this->getValue(['themes', $themeId, 'item', 'border_radius']),
-        '#min' => 0,
-        '#step' => 1,
       ];
 
       $subform['item']['spacing'] = [
@@ -134,6 +132,15 @@ class FormSettings extends SettingsBase {
         '#title' => $this->t('Spacing'),
         '#description' => $this->t('The spacing between form elements in px or rem. Example: 1.5rem'),
         '#default_value' => $this->getValue(['themes', $themeId, 'item', 'spacing']),
+      ];
+
+      $subform['item']['inner_spacing'] = [
+        '#type' => 'number',
+        '#title' => $this->t('Inner Spacing Multiplier'),
+        '#description' => $this->t('The multiplier for the inner spacing of form elements. This value is multiplied by the base spacing to determine the inner spacing. Example: 2'),
+        '#default_value' => $this->getValue(['themes', $themeId, 'item', 'inner_spacing']),
+        '#step' => 0.1,
+        '#min' => 0,
       ];
 
       foreach ([
@@ -147,6 +154,14 @@ class FormSettings extends SettingsBase {
           '#title' => $btnLabel,
           '#open' => FALSE,
         ];
+        if ($btnKey === 'btn') {
+          $subform[$btnKey]['border_radius'] = [
+            '#type' => 'textfield',
+            '#title' => $this->t('Border Radius'),
+            '#description' => $this->t('The radius of the border corners in px or rem. Example: 4px or 0.25rem'),
+            '#default_value' => $this->getValue(['themes', $themeId, $btnKey, 'border_radius']),
+          ];
+        }
         foreach ([
           'bg_color' => $this->t('Color'),
           'bg_color_hover' => $this->t('Hover Color'),
