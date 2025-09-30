@@ -22,7 +22,9 @@ themes:
       border_width: 2px
       border_radius: 0.25rem
       spacing: 1rem
+      inner_spacing: 1
     btn:
+      border_radius: 0.25rem
       bg_color: base-500
       bg_color_hover: base-700
       border_color: ''
