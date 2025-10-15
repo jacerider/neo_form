@@ -280,7 +280,7 @@ final class PreviewBuild {
         '#description' => t('This is a checkbox inside a fieldset container.'),
         '#default_value' => FALSE,
         '#neo_style' => 'reset',
-        '#neo_fieldset_region' => 'legend_start',
+        '#neo_region' => 'legend_start',
       ],
       'checkbox_end' => [
         '#type' => 'checkbox',
@@ -288,7 +288,7 @@ final class PreviewBuild {
         '#description' => t('This is a checkbox inside a fieldset container.'),
         '#default_value' => FALSE,
         '#neo_size' => 'xs',
-        '#neo_fieldset_region' => 'legend_end',
+        '#neo_region' => 'legend_end',
       ],
       'textfield' => [
         '#type' => 'textfield',
