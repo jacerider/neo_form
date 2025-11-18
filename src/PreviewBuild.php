@@ -404,6 +404,38 @@ final class PreviewBuild {
       '#required' => FALSE,
     ];
 
+    $build['titles'] = [
+      '#type' => 'details',
+      '#title' => t('Titles'),
+      '#tree' => TRUE,
+    ];
+
+    foreach ([
+      'xs' => t('Extra Small'),
+      'sm' => t('Small'),
+      'md' => t('Medium'),
+      'lg' => t('Large'),
+      'xl' => t('Extra Large'),
+      '2xl' => t('2X Large'),
+      '3xl' => t('3X Large'),
+    ] as $size => $label) {
+      $build['titles'][$size] = [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['card', 'title-' . $size],
+        ],
+      ];
+      $build['titles'][$size]['supertitle'] = [
+        '#markup' => '<div class="component-supertitle">This is a ' . $label . ' supertitle</div>',
+      ];
+      $build['titles'][$size]['title'] = [
+        '#markup' => '<h2 class="component-title">This is a ' . $label . ' title</h2>',
+      ];
+      $build['titles'][$size]['subtitle'] = [
+        '#markup' => '<div class="component-subtitle">This is a ' . $label . ' subtitle</div>',
+      ];
+    }
+
     self::processElements($build);
     return $build;
   }
