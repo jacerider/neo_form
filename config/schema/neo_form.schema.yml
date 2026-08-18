@@ -1,5 +1,18 @@
 neo_form.settings:
-  type: config_object
+  type: neo_form
+  mapping:
+    _core:
+      # Added by the config installer; only exists for merging config.
+      requiredKey: false
+      type: _core_config_info
+
+# Required by neo_settings.schema.yml, which resolves a variation's stored
+# settings via `type: neo_settings.settings.[%parent.plugin]`.
+neo_settings.settings.neo_form:
+  type: neo_form
+
+neo_form:
+  type: mapping
   mapping:
     status:
       type: sequence
