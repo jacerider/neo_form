@@ -18,6 +18,18 @@ use Drupal\neo_settings\Plugin\SettingsBase;
  * )
  */
 class FormSettings extends SettingsBase {
+  /**
+   * {@inheritdoc}
+   *
+   * The `status` value is a list, so clearing it must replace the stored
+   * value rather than deep-merge with it. key([]) is NULL, so
+   * mergeDeepStrict() would otherwise recurse and swallow the empty array,
+   * silently restoring the previous selection.
+   */
+  protected $strictParents = [
+    ['status'],
+  ];
+
 
   /**
    * {@inheritdoc}
