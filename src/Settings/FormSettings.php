@@ -30,7 +30,6 @@ class FormSettings extends SettingsBase {
     ['status'],
   ];
 
-
   /**
    * {@inheritdoc}
    *

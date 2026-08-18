@@ -5,8 +5,6 @@
  * Primary module hooks for Neo | form module.
  */
 
-use Drupal\Core\Form\FormStateInterface;
-
 /**
  * Implements hook_preprocess_HOOK() for form elements.
  */
