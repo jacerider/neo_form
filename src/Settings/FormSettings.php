@@ -3,6 +3,7 @@
 namespace Drupal\neo_form\Settings;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\neo_build\Scope;
 use Drupal\neo_settings\Plugin\SettingsBase;
 
 /**
@@ -40,19 +41,14 @@ class FormSettings extends SettingsBase {
   protected function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
 
-    /** @var \Drupal\Core\Extension\ThemeHandlerInterface $themeHandler */
-    $themeHandler = \Drupal::service('theme_handler');
-    $themes = $themeHandler->listInfo();
-    // Sort options array with 'front' and 'back' themes first if those keys
-    // exist.
-    $front = $themes['front'] ?? NULL;
-    $back = $themes['back'] ?? NULL;
-    $themes = array_filter($themes, static fn($key) => !in_array($key, ['front', 'back']), ARRAY_FILTER_USE_KEY);
-    $themes = array_merge(['front' => $front, 'back' => $back], $themes);
-    $options = array_map(
-      static fn($theme) => $theme->info['name'],
-      $themes
-    );
+    // One entry per build scope, and no other installed theme. The inline
+    // generator only ever emits per scope, so every other theme this form used
+    // to enumerate was styling that could never reach a page. Narrowing it
+    // also retires the sort-to-the-top special-casing the enumeration needed.
+    $options = [];
+    foreach (Scope::cases() as $scope) {
+      $options[$scope->value] = $scope->label();
+    }
 
     $form['status'] = [
       '#type' => 'checkboxes',
@@ -71,9 +67,9 @@ class FormSettings extends SettingsBase {
       '#tree' => TRUE,
     ];
 
-    foreach ($themes as $theme) {
-      $themeId = $theme->getName();
-      $themeLabel = $theme->info['name'] ?? $themeId;
+    foreach (Scope::cases() as $scope) {
+      $themeId = $scope->value;
+      $themeLabel = $scope->label();
 
       if ($this->getValue(['status', $themeId]) !== TRUE) {
         continue;
@@ -190,8 +186,8 @@ class FormSettings extends SettingsBase {
 
       $form['themes'][$themeId] = [
         '#type' => 'details',
-        '#title' => $this->t('@theme Theme', ['@theme' => $themeLabel]),
-        '#open' => $themeId === 'front',
+        '#title' => $themeLabel,
+        '#open' => $scope === Scope::Front,
         '#group' => implode('][', $form['#parents']) . '][tabs',
       ] + $subform;
     }

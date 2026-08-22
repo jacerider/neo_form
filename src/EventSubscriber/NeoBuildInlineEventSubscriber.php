@@ -42,10 +42,14 @@ class NeoBuildInlineEventSubscriber implements EventSubscriberInterface {
    */
   public function onInlineBuild(NeoBuildInlineEvent $event) {
     $event->addCacheTags(['config:neo_form.settings']);
-    if (!$this->settings->getValue(['status', $event->getThemeName()])) {
+    // The stored key is still `themes`, and deliberately: renaming it would
+    // cost a schema change and an upgrade path on every site for a key
+    // nothing misreads now the form offers only the scopes.
+    $scope = $event->getScope()->value;
+    if (!$this->settings->getValue(['status', $scope])) {
       return;
     }
-    $themeSettings = $this->settings->getValue(['themes', $event->getThemeName()], []);
+    $themeSettings = $this->settings->getValue(['themes', $scope], []);
     if (!$themeSettings) {
       return;
     }
